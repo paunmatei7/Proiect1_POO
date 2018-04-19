@@ -1,4 +1,3 @@
-// I just can't crack your code
 #include <iostream>
 #include <algorithm>
 #include <fstream>
