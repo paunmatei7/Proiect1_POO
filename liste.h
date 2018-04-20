@@ -9,6 +9,7 @@ private:
     int Lin;
     int Col;
 public:
+    /// Constructori
     Complex () {
         Re = Im = 0;
         Lin = Col = 0;
@@ -19,6 +20,7 @@ public:
         Lin = c;
         Col = d;
     }
+    /// Supraincarcarea operatorilor
     Complex operator +(const Complex a) {
         Complex number;
         number.Re =  Re + a.Re;
@@ -140,7 +142,7 @@ class Lista {
             list = nullptr;
         }
         Iterator(Nod * ls) { list = ls; }
-        // Supraincarc operatorul * (dereferentiere)
+        // Supraincarc operatorul *
         Complex& operator*() {
             if(list != nullptr) {
                 return list->data;
@@ -323,7 +325,12 @@ public:
         this->n = n;
         this->m = m;
     }
-    ///OK
+    ~Matrix () {
+        for(int i = 0; i < n; ++i) {
+            delete [] Mat[i];
+        }
+    }
+    ///Supraincarcarea operatorilor
     Matrix operator +(Matrix &b) {
         Matrix c(this->n, this->m);
         for(int i = 0; i < this->n; ++i) {
@@ -334,7 +341,6 @@ public:
         }
         return c;
     }
-    ///OK
     Matrix operator -(Matrix &b) {
         Matrix c(this->n, this->m);
         for(int i = 0; i < this->n; ++i) {
@@ -344,7 +350,6 @@ public:
         }
         return c;
     }
-    ///OK
     Matrix operator *(Matrix &b) {
         Matrix c(this->n, this->m);
         if(this->n != b.m) {
@@ -365,7 +370,7 @@ public:
 1 0 2 0 3 0
 4 0 1 0 1 0
 3 0 2 0 1 0**/
-    ///OK
+    /// Determinant
     Complex det(int N, Matrix mat) {
         Matrix submat(N, N);
         Complex d;
@@ -401,6 +406,7 @@ public:
         }
         return d;
     }
+    /// Inversa unei matrici
     Matrix Inv(int N, Matrix mat) {
         Matrix submat(N, N), ans(N, N);
         for(int i = 0; i < N; ++i) {
